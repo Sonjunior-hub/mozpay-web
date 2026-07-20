@@ -3,10 +3,8 @@ import { motion } from 'framer-motion';
 import { Container, Section } from '@/components/ui';
 
 import CTAGroup from './CTAGroup/CTAGroup';
-import {
-  HERO_DESCRIPTION,
-  HERO_TITLE,
-} from './Hero.constants';
+import { HERO_DESCRIPTION, HERO_TITLE } from './Hero.constants';
+import ProductPreview from './ProductPreview/ProductPreview';
 import TrustIndicators from './TrustIndicators/TrustIndicators';
 
 export default function Hero() {
@@ -17,9 +15,9 @@ export default function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: .6 }}
+            transition={{ duration: 0.6 }}
           >
-            <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-medium text-blue-700">
+            <span className="inline-flex rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-sm font-medium text-blue-700">
               Trusted by digital creators
             </span>
 
@@ -32,19 +30,15 @@ export default function Hero() {
             </p>
 
             <CTAGroup />
-
             <TrustIndicators />
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, scale: .95 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{
-              duration: .7,
-              delay: .2,
-            }}
+            transition={{ duration: 0.7, delay: 0.2 }}
           >
-            {/* ProductPreview entra na próxima PR */}
+            <ProductPreview />
           </motion.div>
         </div>
       </Container>
