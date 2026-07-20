@@ -1,12 +1,8 @@
-import { ShieldCheck, BadgeCheck, Zap } from 'lucide-react';
+import { BadgeCheck, ShieldCheck, Zap } from 'lucide-react';
 
 import { HERO_FEATURES } from '../Hero.constants';
 
-const icons = [
-  ShieldCheck,
-  BadgeCheck,
-  Zap,
-];
+const icons = [ShieldCheck, BadgeCheck, Zap];
 
 export default function TrustIndicators() {
   return (
@@ -17,13 +13,11 @@ export default function TrustIndicators() {
         return (
           <div
             key={item}
-            className="flex items-center gap-2 text-sm text-slate-600"
+            className="flex items-center gap-2 text-sm font-medium text-slate-600"
           >
-            <Icon
-              size={18}
-              className="text-blue-600"
-            />
-
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-100">
+              <Icon size={16} className="text-blue-600" />
+            </span>
             {item}
           </div>
         );
