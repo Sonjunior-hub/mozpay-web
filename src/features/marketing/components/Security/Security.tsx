@@ -37,50 +37,43 @@ const securityItems = [
 
 export default function Security() {
   return (
-    <Section className="py-20 bg-slate-50">
+    <Section className="py-20">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="rounded-full bg-green-100 px-4 py-2 text-sm font-semibold text-green-700">
-            Security First
-          </span>
-
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Built with security at the core.
-          </h2>
-
-          <p className="mt-6 text-lg text-slate-600">
-            MozPay is designed to provide a safe environment for digital purchases,
-            protecting both customers and sellers.
+        <div className="mb-10 text-center">
+          <p className="text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+            Security first
           </p>
+          <h2 className="mt-3 text-3xl font-semibold text-foreground sm:text-4xl">
+            Built to protect every transaction
+          </h2>
         </div>
 
-        <div className="mt-16 grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-2">
           {securityItems.map((item, index) => {
             const Icon = item.icon;
 
             return (
               <motion.div
                 key={item.title}
-                initial={{ opacity: 0, y: 24 }}
+                initial={{ opacity: 0, y: 18 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.1,
-                }}
+                viewport={{ once: true, amount: 0.25 }}
+                transition={{ duration: 0.35, delay: index * 0.08 }}
               >
-                <Card className="h-full rounded-3xl border border-slate-200 p-8 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:shadow-xl">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-green-600 text-white">
-                    <Icon size={26} />
+                <Card className="h-full p-6">
+                  <div className="flex items-start gap-4">
+                    <div className="rounded-xl bg-primary/10 p-3 text-primary">
+                      <Icon className="h-6 w-6" />
+                    </div>
+                    <div>
+                      <h3 className="text-lg font-semibold text-foreground">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-sm text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </div>
                   </div>
-
-                  <h3 className="mt-6 text-2xl font-semibold text-slate-900">
-                    {item.title}
-                  </h3>
-
-                  <p className="mt-4 leading-7 text-slate-600">
-                    {item.description}
-                  </p>
                 </Card>
               </motion.div>
             );

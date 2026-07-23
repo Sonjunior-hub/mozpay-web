@@ -34,60 +34,53 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <Section className="py-20">
+    <Section className="py-16 sm:py-20">
       <Container>
         <div className="mx-auto max-w-3xl text-center">
-          <span className="rounded-full bg-slate-100 px-4 py-2 text-sm font-semibold text-slate-700">
+          <p className="mb-3 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
             How it works
-          </span>
-
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Buy subscriptions in three simple steps.
+          </p>
+          <h2 className="text-3xl font-bold tracking-tight text-foreground sm:text-4xl">
+            Pay faster, safer, and smarter
           </h2>
-
-          <p className="mt-6 text-lg text-slate-600">
-            Everything was designed to make your experience fast,
-            secure and effortless.
+          <p className="mt-4 text-base text-muted-foreground sm:text-lg">
+            In three simple steps, you can discover the best subscription offer and complete your purchase in minutes.
           </p>
         </div>
 
-        <div className="relative mt-16 grid gap-8 lg:grid-cols-3">
+        <div className="mt-10 grid gap-4 md:grid-cols-3">
           {steps.map((step, index) => {
             const Icon = step.icon;
 
             return (
               <motion.div
                 key={step.number}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{
-                  duration: 0.5,
-                  delay: index * 0.15,
-                }}
+                viewport={{ once: true, amount: 0.3 }}
+                transition={{ duration: 0.35, delay: index * 0.08 }}
               >
-                <Card className="relative h-full rounded-3xl border border-slate-200 p-8 shadow-sm transition-all duration-300 hover:-translate-y-2 hover:shadow-xl">
-                  <div className="flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-900 text-white">
-                    <Icon size={24} />
+                <Card className="h-full p-6">
+                  <div className="flex items-center justify-between">
+                    <span className="text-sm font-semibold text-primary">{step.number}</span>
+                    <div className="rounded-full bg-primary/10 p-2 text-primary">
+                      <Icon className="h-5 w-5" />
+                    </div>
                   </div>
 
-                  <span className="mt-6 block text-sm font-bold tracking-[0.25em] text-slate-400">
-                    {step.number}
-                  </span>
-
-                  <h3 className="mt-2 text-2xl font-bold text-slate-900">
+                  <h3 className="mt-5 text-xl font-semibold text-foreground">
                     {step.title}
                   </h3>
-
-                  <p className="mt-4 leading-7 text-slate-600">
+                  <p className="mt-3 text-sm leading-6 text-muted-foreground">
                     {step.description}
                   </p>
 
-                  {index < steps.length - 1 && (
-                    <div className="absolute -right-6 top-1/2 hidden -translate-y-1/2 lg:block">
-                      <ArrowRight className="h-8 w-8 text-slate-300" />
+                  {index < steps.length - 1 ? (
+                    <div className="mt-6 flex items-center gap-2 text-sm font-medium text-primary">
+                      Next step
+                      <ArrowRight className="h-4 w-4" />
                     </div>
-                  )}
+                  ) : null}
                 </Card>
               </motion.div>
             );
