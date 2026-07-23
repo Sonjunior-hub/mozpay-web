@@ -33,68 +33,68 @@ const faqs = [
 ];
 
 export default function FAQ() {
-  const [open, setOpen] = useState<number | null>(0);
+  const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <Section className="py-20">
+    <Section className="py-16 sm:py-20">
       <Container>
-        <div className="mx-auto max-w-3xl text-center">
-          <span className="rounded-full bg-blue-100 px-4 py-2 text-sm font-semibold text-blue-700">
-            Frequently Asked Questions
-          </span>
+        <div className="mx-auto max-w-3xl">
+          <div className="mb-8 text-center">
+            <p className="mb-2 text-sm font-semibold uppercase tracking-[0.2em] text-primary">
+              FAQ
+            </p>
+            <h2 className="text-3xl font-semibold text-foreground sm:text-4xl">
+              Frequently asked questions
+            </h2>
+          </div>
 
-          <h2 className="mt-6 text-4xl font-bold tracking-tight text-slate-900 sm:text-5xl">
-            Got questions?
-          </h2>
+          <div className="space-y-3">
+            {faqs.map((faq, index) => {
+              const isOpen = openIndex === index;
 
-          <p className="mt-6 text-lg text-slate-600">
-            Everything you need to know before using MozPay.
-          </p>
-        </div>
-
-        <div className="mx-auto mt-16 max-w-4xl space-y-4">
-          {faqs.map((faq, index) => {
-            const isOpen = open === index;
-
-            return (
-              <motion.div
-                key={faq.question}
-                layout
-                className="overflow-hidden rounded-3xl border border-slate-200 bg-white"
-              >
-                <button
-                  onClick={() => setOpen(isOpen ? null : index)}
-                  className="flex w-full items-center justify-between px-6 py-5 text-left"
+              return (
+                <div
+                  key={faq.question}
+                  className="overflow-hidden rounded-xl border border-border bg-background/60"
                 >
-                  <span className="text-lg font-semibold text-slate-900">
-                    {faq.question}
-                  </span>
-
-                  <motion.div
-                    animate={{ rotate: isOpen ? 180 : 0 }}
-                    transition={{ duration: 0.2 }}
+                  <button
+                    type="button"
+                    className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left"
+                    onClick={() => setOpenIndex(isOpen ? null : index)}
+                    aria-expanded={isOpen}
                   >
-                    <ChevronDown />
-                  </motion.div>
-                </button>
-
-                <AnimatePresence initial={false}>
-                  {isOpen && (
-                    <motion.div
-                      initial={{ height: 0, opacity: 0 }}
-                      animate={{ height: 'auto', opacity: 1 }}
-                      exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.25 }}
+                    <span className="text-base font-medium text-foreground sm:text-lg">
+                      {faq.question}
+                    </span>
+                    <motion.span
+                      animate={{ rotate: isOpen ? 180 : 0 }}
+                      transition={{ duration: 0.2 }}
+                      className="shrink-0 text-muted-foreground"
                     >
-                      <div className="px-6 pb-6 text-slate-600 leading-7">
-                        {faq.answer}
-                      </div>
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </motion.div>
-            );
-          })}
+                      <ChevronDown className="h-5 w-5" />
+                    </motion.span>
+                  </button>
+
+                  <AnimatePresence initial={false}>
+                    {isOpen ? (
+                      <motion.div
+                        key="content"
+                        initial={{ height: 0, opacity: 0 }}
+                        animate={{ height: 'auto', opacity: 1 }}
+                        exit={{ height: 0, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                        className="overflow-hidden"
+                      >
+                        <p className="px-5 pb-4 text-sm text-muted-foreground sm:text-base">
+                          {faq.answer}
+                        </p>
+                      </motion.div>
+                    ) : null}
+                  </AnimatePresence>
+                </div>
+              );
+            })}
+          </div>
         </div>
       </Container>
     </Section>
